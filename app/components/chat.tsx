@@ -1453,25 +1453,37 @@ function _Chat() {
     return renderMessages.slice(msgRenderIndex, endRenderIndex);
   }, [msgRenderIndex, renderMessages]);
 
+  // 定义一个函数 onChatBodyScroll，用于处理聊天内容滚动事件
   const onChatBodyScroll = (e: HTMLElement) => {
+    // 计算当前滚动条底部的高度
     const bottomHeight = e.scrollTop + e.clientHeight;
+    // 定义一个边缘阈值，用于判断是否接近顶部或底部
     const edgeThreshold = e.clientHeight;
 
+    // 判断滚动条是否接近顶部
     const isTouchTopEdge = e.scrollTop <= edgeThreshold;
+    // 判断滚动条是否接近底部
     const isTouchBottomEdge = bottomHeight >= e.scrollHeight - edgeThreshold;
+    // 判断滚动条是否到达底部，根据是否是移动端设备设置不同的阈值
     const isHitBottom =
       bottomHeight >= e.scrollHeight - (isMobileScreen ? 4 : 10);
 
+    // 计算上一页消息的索引
     const prevPageMsgIndex = msgRenderIndex - CHAT_PAGE_SIZE;
+    // 计算下一页消息的索引
     const nextPageMsgIndex = msgRenderIndex + CHAT_PAGE_SIZE;
 
+    // 如果滚动条接近顶部且未到达底部，则加载上一页消息
     if (isTouchTopEdge && !isTouchBottomEdge) {
       setMsgRenderIndex(prevPageMsgIndex);
+    // 如果滚动条到达底部，则加载下一页消息
     } else if (isTouchBottomEdge) {
       setMsgRenderIndex(nextPageMsgIndex);
     }
 
+    // 更新是否到达底部的状态
     setHitBottom(isHitBottom);
+    // 更新自动滚动的状态
     setAutoScroll(isHitBottom);
   };
   function scrollToBottom() {
@@ -2268,6 +2280,9 @@ function _Chat() {
             />
 
             <ChatActions
+              // 移除与插件扩展相关的属性和逻辑
+              // showPlugins={showPlugins}
+              // onPluginSelect={onPluginSelect}
               uploadAttachments={handleUploadAttachments}
               setAttachImages={setAttachImages}
               setUploading={setUploading}
@@ -2276,15 +2291,15 @@ function _Chat() {
               hitBottom={hitBottom}
               uploading={uploading}
               showPromptHints={() => {
-                // Click again to close
-                if (promptHints.length > 0) {
-                  setPromptHints([]);
-                  return;
-                }
+              // Click again to close
+              if (promptHints.length > 0) {
+                setPromptHints([]);
+                return;
+              }
 
-                inputRef.current?.focus();
-                setUserInput("/");
-                onSearch("");
+              inputRef.current?.focus();
+              setUserInput("/");
+              onSearch("");
               }}
               setShowShortcutKeyModal={setShowShortcutKeyModal}
               setUserInput={setUserInput}
