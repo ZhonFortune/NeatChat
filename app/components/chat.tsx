@@ -68,7 +68,7 @@ import {
   getMessageTextContent,
   getMessageImages,
   isVisionModel,
-  showPlugin,
+  // showPlugin,
   isDalle3,
   safeLocalStorage,
 } from "../utils";
