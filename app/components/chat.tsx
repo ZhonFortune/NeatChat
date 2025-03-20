@@ -69,7 +69,6 @@ import {
   getMessageImages,
   isVisionModel,
   isDalle3,
-  showPlugins,
   safeLocalStorage,
 } from "../utils";
 
