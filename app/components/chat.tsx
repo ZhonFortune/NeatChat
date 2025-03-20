@@ -68,6 +68,7 @@ import {
   getMessageTextContent,
   getMessageImages,
   isVisionModel,
+  showPlugin,
   isDalle3,
   safeLocalStorage,
 } from "../utils";
@@ -752,7 +753,7 @@ export function ChatActions(props: {
           />
         )}
 
-        {showPlugins(currentProviderName, currentModel) && (
+        {/* {showPlugins(currentProviderName, currentModel) && (
           <ChatAction
             onClick={() => {
               if (currentModel === "gemini-2.0-flash-exp") {
@@ -766,8 +767,8 @@ export function ChatActions(props: {
             text={Locale.Plugin.Name}
             icon={<PluginIcon />}
           />
-        )}
-        {showPluginSelector && (
+        )} */}
+        {/* {showPluginSelector && (
           <SimpleMultipleSelector
             items={[
               ...(currentModel === "gemini-2.0-flash-exp"
@@ -792,7 +793,7 @@ export function ChatActions(props: {
             }}
             showSearch={false}
           />
-        )}
+        )} */}
 
         {!isMobileScreen && config.enableShortcuts && (
           <ChatAction
